@@ -10,6 +10,13 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import com.revature.map.Q4Mapper;
 import com.revature.reduce.Q4Reducer;
 
+/**
+ * 
+ * @author Eddie Smith
+ * The driver class for Q4: List the % of change in female employment from the year 2000.
+ *
+ */
+
 public class Q4Driver {
 
 	public static void main(String args[]) throws Exception {
@@ -31,13 +38,13 @@ public class Q4Driver {
 		FileOutputFormat.setOutputPath(job, new Path(args[1]));
 		
 		job.setMapperClass(Q4Mapper.class);
-//		job.setReducerClass(Q4Reducer.class);
+		job.setReducerClass(Q4Reducer.class);
 		
 		job.setMapOutputKeyClass(Text.class);
 		job.setMapOutputValueClass(Text.class);
 		
-//		job.setOutputKeyClass(Text.class);
-//		job.setOutputValueClass(DoubleWritable.class);
+		job.setOutputKeyClass(Text.class);
+		job.setOutputValueClass(DoubleWritable.class);
 		
 		boolean success = job.waitForCompletion(true);
 		System.exit(success ? 0 : 1);

@@ -10,6 +10,13 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import com.revature.map.Q1Mapper;
 import com.revature.reduce.Q1Reducer;
 
+/**
+ * 
+ * @author Eddie Smith
+ * This is the driver for Q1: Identify the countries where % of female graduates is less than 30%.
+ *
+ */
+
 public class Q1Driver {
 	
 	public static void main(String args[]) throws Exception {

@@ -7,6 +7,11 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.Reducer.Context;
 
+/*
+ * This reducer for Q2 is simply performing an average of all the data, omitting the data
+ * from 2013 as it is an enormous outlier
+ */
+
 public class Q2Reducer extends Reducer<Text, DoubleWritable, Text, DoubleWritable> {
 
 	@Override

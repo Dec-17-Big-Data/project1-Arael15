@@ -5,12 +5,28 @@ import java.io.IOException;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
-//import org.apache.logging.log4j.*;
+
+/**
+ * 
+ * @author Eddie Smith
+ * This is the mapper for Q1: Identify the countries where % of female graduates is less than 30%. 
+ * We use the Gross Graduation Rate - Tertiary (Female) as a measure of this statistic, as
+ * it provides data as to the current graduation rate. We assume that for each country it will have data
+ * for some year, though this may not be the case.
+ * 
+ *
+ */
 
 public class Q1Mapper extends Mapper<LongWritable, Text, Text, Text> {
-	
-	//private static Logger log = LogManager.getLogger(Q1Mapper.class);
 
+	/**
+	 * The mapper finds the rows which correspond to the desired series and begins iterating
+	 * from the most recent year backwards until it finds a year with data. For each year of data found,
+	 * we add that year of data to a delimited string which will be passed as a value for that country key.
+	 * In actuality, this is unnecessary, since we could have just sent the most recent as the key and not needed
+	 * a reducer for this question. If no data is found, then the key is not sent to the reducer.
+	 */
+	
 	@Override
 	public void map(LongWritable key, Text value, Context context)
 			throws IOException, InterruptedException {
@@ -39,16 +55,6 @@ public class Q1Mapper extends Mapper<LongWritable, Text, Text, Text> {
 			
 			
 		}
-		
-		
-
-		/*
-		 * The line.split("\\W+") call uses regular expressions to split the
-		 * line up by non-word characters.
-		 * 
-		 * If you are not familiar with the use of regular expressions in
-		 * Java code, search the web for "Java Regex Tutorial." 
-		 */
 		
 	}
 }

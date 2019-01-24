@@ -6,11 +6,27 @@ import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Mapper.Context;
-//import org.apache.logging.log4j.*;
+
+/**
+ * 
+ * @author Eddie Smith
+ * The mapper for Q4: List the % of change in female employment from the year 2000.
+ * The series selected to answer this query is Employment to Population ratio (Female) 15+, since
+ * there was no specific entry found for employment rate. Using 2000 as a base year, we also selected
+ * the most recent year for which each country had this data. After verification, this was determined to
+ * be 2016 for every country that also had data in 2000, though the class is set up in such a way that
+ * it would find the most recent year that a country had data. It then sends two values out for each country
+ * corresponding to the year and the ratio combined with a delimiter.
+ *
+ */
 
 public class Q4Mapper extends Mapper<LongWritable, Text, Text, Text>{
 	
-	//private static Logger log = LogManager.getLogger(Q3Mapper.class);
+	/**
+	 * The map function parses for the rows relating to the employment to population ratio as desired,
+	 * then extracts the data from the column relating to the year 2000 and the most recent year containing data
+	 * and then sends these to the mapper marked with a delimiter.
+	 */
 
 	@Override
 	public void map(LongWritable key, Text value, Context context)
@@ -29,7 +45,7 @@ public class Q4Mapper extends Mapper<LongWritable, Text, Text, Text>{
 				double percent = 0;
 				try {
 					percent = Double.parseDouble(parsed[parsed.length - i]);
-					String converted = (2017 -i) + "%%" + percent;
+					String converted = (2017 - i) + "%%" + percent;
 					context.write(new Text(name), new Text(converted));
 					break loop;
 				}

@@ -11,6 +11,13 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import com.revature.map.Q2Mapper;
 import com.revature.reduce.Q2Reducer;
 
+/**
+ * 
+ * @author Eddie Smith
+ * The Driver class for Q2: List the average increase in female education in the U.S. from the year 2000.
+ *
+ */
+
 public class Q2Driver {
 	
 	public static void main(String args[]) throws Exception {

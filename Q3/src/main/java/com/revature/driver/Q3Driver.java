@@ -10,6 +10,13 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import com.revature.map.Q3Mapper;
 import com.revature.reduce.Q3Reducer;
 
+/**
+ * 
+ * @author Eddie Smith
+ * The driver class for Q3: List the % of change in male employment from the year 2000.
+ *
+ */
+
 public class Q3Driver {
 
 	public static void main(String args[]) throws Exception {

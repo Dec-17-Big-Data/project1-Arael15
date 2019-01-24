@@ -4,12 +4,22 @@ import java.io.IOException;
 
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
-//import org.apache.logging.log4j.*;
+
+/**
+ * 
+ * @author Eddie Smith
+ * This is the reducer for Q1: Identify the countries where % of female graduates is less than 30%. 
+ * 
+ *
+ */
 
 public class Q1Reducer extends Reducer<Text, Text, Text, Text> {
-	
-	//private static Logger log = LogManager.getLogger(Q1Reducer.class);
 
+	/**
+	 * The reducer here takes the delimited string which is the key and parses out the first
+	 * value from the string. This is then sent as the final value.
+	 */
+	
 	@Override
 	public void reduce(Text key, Iterable<Text> values, Context context)
 			throws IOException, InterruptedException {
@@ -19,9 +29,6 @@ public class Q1Reducer extends Reducer<Text, Text, Text, Text> {
 		 */
 		for (Text value : values) {
 
-			/*
-			 * Add the value to the word count counter for this key.
-			 */
 			String parsed = value.toString();
 			String[] split = parsed.split("%%");
 			for (int i = 0; i < split.length; i++){

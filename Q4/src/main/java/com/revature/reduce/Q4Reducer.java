@@ -7,13 +7,24 @@ import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.Reducer.Context;
-//import org.apache.logging.log4j.*;
 
+/**
+ * 
+ * @author Eddie Smith
+ * The reducer for Q4: List the % of change in female employment from the year 2000.
+ * 
+ *
+ */
 
 public class Q4Reducer extends Reducer<Text, Text, Text, DoubleWritable> {
-	
-	//private static Logger log = LogManager.getLogger(Q3Reducer.class);
 
+	/**
+	 * Receives as input two values for each country of year and employment percentage
+	 * separated by a delimiter. After separating the two, computes the percent change as
+	 * (2016 % - 2000 %) / (2000 %). Assumption was that a number adjusted to the previous employment
+	 * would be more useful that a raw absolute change, though this value could be just as easily computed.
+	 */
+	
 	@Override
 	public void reduce(Text key, Iterable<Text> values, Context context)
 			throws IOException, InterruptedException {
@@ -25,9 +36,6 @@ public class Q4Reducer extends Reducer<Text, Text, Text, DoubleWritable> {
 		 */
 		for (Text value : values) {
 
-			/*
-			 * Add the value to the word count counter for this key.
-			 */
 			String parsed = value.toString();
 			String[] split = parsed.split("%%");
 			if (split[0].equals("2000")) {
@@ -43,9 +51,5 @@ public class Q4Reducer extends Reducer<Text, Text, Text, DoubleWritable> {
 		
 		context.write(key, new DoubleWritable(Double.parseDouble(formatted)));
 
-		/*
-		 * Call the write method on the Context object to emit a key
-		 * and a value from the reduce method. 
-		 */
 	}
 }
